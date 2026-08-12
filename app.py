@@ -15,9 +15,12 @@ load_dotenv()
 def configure_tracing() -> None:
     # enable_sensitive_data captures prompts/completions so spans show full agent I/O.
     extension_port = os.getenv("VS_CODE_EXTENSION_PORT")
+    # In the hosted Foundry runtime the agent server configures OpenTelemetry itself.
+    # Only wire up tracing when we have a real target (VS Code Agent Inspector or an
+    # explicit OTLP endpoint); otherwise we'd override the host's providers and spam a
+    # non-existent local collector with connection-refused errors.
     if not extension_port and not os.getenv("OTEL_EXPORTER_OTLP_ENDPOINT"):
-        # Default to a local OTLP collector (gRPC) when not attached to the VS Code extension.
-        os.environ["OTEL_EXPORTER_OTLP_ENDPOINT"] = "http://localhost:4317"
+        return
     configure_otel_providers(
         vs_code_extension_port=int(extension_port) if extension_port else None,
         enable_sensitive_data=True,
