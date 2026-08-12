@@ -53,7 +53,7 @@ Result: [app.py](app.py)'s `Writer`, `Reviewer`, and `build_workflow`.
 ## 6. Tracing
 
 - Added OpenTelemetry tracing via `agent_framework.observability.configure_otel_providers`, called once in `configure_tracing()` at startup.
-- Local/dev default: exports to a local OTLP collector on `http://localhost:4317` (gRPC) when no VS Code extension port or explicit OTLP endpoint is set.
+- Local/dev: tracing is enabled only when a target is configured — either `VS_CODE_EXTENSION_PORT` (Agent Inspector) or an explicit `OTEL_EXPORTER_OTLP_ENDPOINT`. When neither is set, `configure_tracing()` is a no-op so nothing spams a non-existent local collector, and the hosted Foundry runtime's own telemetry setup is left untouched.
 - Foundry Toolkit integration: when running under the VS Code debugger, `VS_CODE_EXTENSION_PORT` is passed through so traces stream straight into the Agent Inspector.
 - `enable_sensitive_data=True` so spans capture full prompt/completion text for debugging draft/review/final content flow.
 - Configurable via standard `OTEL_EXPORTER_OTLP_ENDPOINT` / `OTEL_EXPORTER_OTLP_PROTOCOL` env vars (see [.env.example](.env.example)) to point at any OTLP-compatible backend, including Azure Monitor/App Insights linked to the Foundry project.
