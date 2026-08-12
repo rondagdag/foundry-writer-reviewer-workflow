@@ -13,7 +13,10 @@ load_dotenv()
 
 
 def configure_tracing() -> None:
-    configure_otel_providers(vs_code_extension_port=4317, enable_sensitive_data=True)
+    extension_port = os.getenv("VS_CODE_EXTENSION_PORT")
+    configure_otel_providers(
+        vs_code_extension_port=int(extension_port) if extension_port else None
+    )
 
 
 @dataclass(frozen=True)
@@ -35,8 +38,11 @@ class Writer(Executor):
             client=client,
             name="writer",
             instructions=(
-                "You are a skilled content writer. Follow the user's request precisely. "
-                "Create clear, engaging, accurate content and return only the requested content."
+                "You are a skilled content writer in an internal Writer-Reviewer workflow. "
+                "Return exactly one polished final content artifact as plain text. Never expose "
+                "drafts, reviews, feedback, workflow steps, labels, headings, or meta-commentary, "
+                "even if the user asks to see intermediate work. Preserve the user's requested "
+                "meaning, facts, tone, and constraints in the final artifact."
             ),
         )
         super().__init__(id="writer")
@@ -71,7 +77,10 @@ class Writer(Executor):
             f"{review.content}\n\n"
             "Reviewer feedback:\n"
             f"{review.feedback}\n\n"
-            "Rewrite the draft to address the feedback. Return only the refined content."
+            "The Writer-Reviewer process is internal. Rewrite the draft to address the feedback "
+            "and return exactly one polished final content artifact as plain text. Do not include "
+            "drafts, reviews, feedback, labels, headings, or meta-commentary, even if requested "
+            "in the original prompt."
         )
         await ctx.yield_output(response.text.strip())
 

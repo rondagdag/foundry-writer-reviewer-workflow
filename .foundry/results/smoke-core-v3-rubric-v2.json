@@ -1,0 +1,53 @@
+{
+  "id": "evalrun_a6f3d7e6885543c3874673e1282767a9",
+  "eval_id": "eval_2750f3f59a2545f49457c3ff48e1cdd1",
+  "name": "smoke-core-v2",
+  "status": "completed",
+  "created_at": 1786508169,
+  "modified_at": 1786508569,
+  "created_by": "Ron Dagdag",
+  "data_source": {
+    "type": "azure_ai_target_completions",
+    "input_messages": {
+      "type": "template",
+      "template": [
+        {
+          "role": "user",
+          "content": "{{item.query}}",
+          "type": "message"
+        }
+      ]
+    },
+    "source": {
+      "type": "file_id",
+      "id": "azureai://accounts/ron-agent-workflow-foundry/projects/agent-workflow-prj/data/smoke-core/versions/1.0"
+    },
+    "target": {
+      "type": "azure_ai_agent",
+      "name": "foundry-workflow-2",
+      "version": "3",
+      "tool_descriptions": []
+    }
+  },
+  "metadata": {
+    "azd_agent": "foundry-workflow-2",
+    "trigger_type": "oneoff"
+  },
+  "report_url": "https://ai.azure.com/nextgen/r/ipQ6VA62Q3m3ZjxemX3cFA,agent-workflow-rg,,ron-agent-workflow-foundry,agent-workflow-prj/build/evaluations/eval_2750f3f59a2545f49457c3ff48e1cdd1/run/evalrun_a6f3d7e6885543c3874673e1282767a9",
+  "result_counts": {
+    "total": 15,
+    "passed": 6,
+    "failed": 9,
+    "errored": 0,
+    "skipped": 0
+  },
+  "per_testing_criteria_results": [
+    {
+      "testing_criteria": "smoke-core",
+      "passed": 6,
+      "failed": 9,
+      "errored": 0,
+      "skipped": 0
+    }
+  ]
+}

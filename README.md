@@ -29,6 +29,10 @@ The command prints only the refined content.
 
 Press `F5` and choose **Debug Local Agent/Workflow HTTP Server** to start the Responses-compatible server and open Foundry Toolkit Agent Inspector. Choose **Debug Local Agent/Workflow in Terminal** for a direct CLI run.
 
+## Tracing
+
+Tracing follows standard OpenTelemetry configuration. To export to an active Foundry Toolkit listener, set `VS_CODE_EXTENSION_PORT` to its gRPC port (for example, `4317`). To include prompts and completions, also set `ENABLE_SENSITIVE_DATA=true`. Standard `OTEL_EXPORTER_OTLP_*` variables can be used to send telemetry to another OTLP-compatible backend.
+
 ## Test
 
 ```bash
