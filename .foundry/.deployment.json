@@ -4,7 +4,7 @@
     "zipPackageMode": "remote",
     "zipRuntime": "python_3_14",
     "zipEntryPoint": [
-      "python3",
+      "python",
       "app.py"
     ]
   },
