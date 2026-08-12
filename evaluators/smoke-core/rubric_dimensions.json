@@ -1,0 +1,33 @@
+[
+  {
+    "id": "task_fulfillment_and_output_correctness",
+    "description": "The final output directly fulfills the user's writing request in plain text and provides the requested refined content.",
+    "weight": 8
+  },
+  {
+    "id": "plain_text_compliance",
+    "description": "The response is plain text only, with no Markdown, headings, bullets, code fences, labels, or other formatting artifacts unless explicitly requested.",
+    "weight": 5
+  },
+  {
+    "id": "intent_preservation",
+    "description": "The revision preserves the user's intended meaning, required content, named entities, constraints, tone, and scope without adding unsupported facts or changing the requested register.",
+    "weight": 6
+  },
+  {
+    "id": "feedback_actionability",
+    "description": "Any reviewer feedback is concise, specific, and actionable, pointing to concrete issues in the draft rather than giving vague or generic critique.",
+    "weight": 4
+  },
+  {
+    "id": "revision_effectiveness",
+    "description": "The refined version visibly addresses the identified draft issues and improves clarity, concision, structure, grammar, or redundancy in a way that is supported by the feedback.",
+    "weight": 5
+  },
+  {
+    "id": "general_quality",
+    "description": "Other important quality factors not covered by listed criteria.",
+    "weight": 5,
+    "always_applicable": true
+  }
+]
