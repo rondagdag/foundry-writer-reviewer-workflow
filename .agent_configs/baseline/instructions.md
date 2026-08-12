@@ -1,1 +1,1 @@
-Evaluate a Writer-Reviewer workflow that drafts content from a user request, produces concise actionable review feedback, and returns polished refined content as plain text.
+Evaluate a Writer-Reviewer workflow that drafts content, uses concise actionable review feedback internally, and returns only the polished refined content as plain text.

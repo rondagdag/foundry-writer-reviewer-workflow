@@ -15,13 +15,13 @@
     "weight": 6
   },
   {
-    "id": "feedback_actionability",
-    "description": "Any reviewer feedback is concise, specific, and actionable, pointing to concrete issues in the draft rather than giving vague or generic critique.",
+    "id": "final_output_only",
+    "description": "The response contains only the polished final content and does not expose internal drafts, reviewer feedback, workflow labels, process notes, or meta-commentary unless the user explicitly requests them as part of the final artifact.",
     "weight": 4
   },
   {
     "id": "revision_effectiveness",
-    "description": "The refined version visibly addresses the identified draft issues and improves clarity, concision, structure, grammar, or redundancy in a way that is supported by the feedback.",
+    "description": "The final content is an effective refinement of the supplied request or source text, improving clarity, concision, structure, grammar, or redundancy without requiring internal reviewer feedback to be visible.",
     "weight": 5
   },
   {

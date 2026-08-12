@@ -10,7 +10,7 @@ dataset:
     local_uri: datasets/smoke-core
 evaluators:
     - name: smoke-core
-      version: "1"
+      version: "2"
       local_uri: evaluators/smoke-core/rubric_dimensions.json
 options:
     eval_model: gpt-5.4-mini
