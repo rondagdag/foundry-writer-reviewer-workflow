@@ -5,10 +5,15 @@ from dataclasses import dataclass
 
 from agent_framework import Agent, Executor, Message, WorkflowBuilder, WorkflowContext, handler
 from agent_framework.foundry import FoundryChatClient, ResponsesHostServer
+from agent_framework.observability import configure_otel_providers
 from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
 
 load_dotenv()
+
+
+def configure_tracing() -> None:
+    configure_otel_providers(vs_code_extension_port=4317, enable_sensitive_data=True)
 
 
 @dataclass(frozen=True)
@@ -138,6 +143,7 @@ async def run_cli(prompt: str) -> None:
 
 
 def main() -> None:
+    configure_tracing()
     parser = argparse.ArgumentParser(description="Run the Writer-Reviewer workflow.")
     parser.add_argument("prompt", nargs="?", help="Content request for the writer")
     parser.add_argument("--server", action="store_true", help="Run an OpenAI Responses-compatible server")
