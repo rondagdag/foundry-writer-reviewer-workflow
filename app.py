@@ -13,9 +13,11 @@ load_dotenv()
 
 
 def configure_tracing() -> None:
+    # enable_sensitive_data captures prompts/completions so spans show full agent I/O.
     extension_port = os.getenv("VS_CODE_EXTENSION_PORT")
     configure_otel_providers(
-        vs_code_extension_port=int(extension_port) if extension_port else None
+        vs_code_extension_port=int(extension_port) if extension_port else None,
+        enable_sensitive_data=True,
     )
 
 
